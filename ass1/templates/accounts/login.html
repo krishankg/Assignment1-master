@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Login  {% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row py-5">
+		<div class="col col-md-4 mx-auto card">
+			<h4 class="text-center">Login</h4>
+			<form method="POST">
+				{% csrf_token %}
+				<label>Username</label>
+				<input type="text" name="username">
+				<br>
+				<label>Password</label>
+				<input type="password" name="password">
+				<input type="submit" value='login'>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

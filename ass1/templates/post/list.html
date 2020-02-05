@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row py-2">
+		{% include 'post/post.html' %}
+		{% for object in objects %}
+		<div class="card w-75 mx-auto">
+			  <div class="card-body">
+			    <p class="card-text" style="font-size:22px;font-weight: bold;">{{ object.content }}</p>
+			     <p class="card-text" style="font-size:20px;">Created by: {{ object.user.username|title  }} ,<span>{{ object.created_on }} | </span>
+			     	{% if request.user in object.like.all %}
+			     	<span><a href="{% url 'post:like' object.id %}">Liked({{ object.like.all.count }})</a></span>
+			     	{% else %}
+			     	<span><a href="{% url 'post:like' object.id %}">Like ({{ object.like.all.count }})</a></span>
+
+			     	{% endif %}
+			     </p>
+			  </div>
+			</div>
+			 <br/><br/>
+		{% endfor %}
+	</div>
+	</div>
+</div>
+{% endblock %}
